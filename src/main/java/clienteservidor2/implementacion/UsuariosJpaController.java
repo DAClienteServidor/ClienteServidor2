@@ -15,7 +15,6 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-/** import clienteservidor2.modelo.Usuarios_;**/
 import javax.persistence.Query;
 
 /**
@@ -26,7 +25,7 @@ import javax.persistence.Query;
 @Stateless
 public class UsuariosJpaController implements DAO<List<Usuarios>> {
 
-    @PersistenceContext (unitName="ClienteServidor2")
+    @PersistenceContext (unitName="clienteServ-pu")
     private EntityManager em;
     
     //OVERRIDES-----------------------------------------
@@ -84,62 +83,38 @@ public class UsuariosJpaController implements DAO<List<Usuarios>> {
             em.close();
         }
     }
-    /**
-    public List<Usuarios> findByNombreApellido(String nombreApellido) {
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Usuarios> q = cb.createQuery(Usuarios.class);
-		
-		Root<Usuarios> root = q.from(Usuarios.class);
-		q.select(root);
-	
-        Predicate predicate = cb.and(
-                cb.like(root.get(Usuarios_.Nombre), likeString(nombreApellido)),
-                cb.like(root.get(Usuarios_.Apellido), likeString(nombreApellido))
-        );
-		
-		q.where(predicate);
-		
-		TypedQuery<Usuarios> query = em.createQuery(q);
-		
-		return query.getResultList();
-	}
     
-   public Optional<Usuarios> findByNumeroDocumento(String dni) {
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Usuarios> q = cb.createQuery(Usuarios.class);
-		
-		Root<Usuarios> root = q.from(Usuarios.class);
-		q.select(root);
-		
-		Predicate predicate = cb.equal(
-				root.get(Usuarios_.dni), dni);
-		
-		q.where(predicate);
-		
-		TypedQuery<Usuarios> query = em.createQuery(q);
-		
-		Usuarios Usuarios = null;
-		try {
-			Usuarios = query.getSingleResult();
-		} catch (NoResultException e1) {
-		} catch (NonUniqueResultException e2) {
-		}
-		
-		return Optional.ofNullable(Usuarios);
-	}
-
-	public static final String likeString(String search)  {
-		StringBuilder builder = new StringBuilder();
-		
-		if(search.charAt(0) != '%')
-			builder.append('%');
-		builder.append(search.toUpperCase());	
-		if(search.charAt(search.length()-1) != '%')
-			builder.append('%');
-		
-		return builder.toString();
-	}	 
-   
-    -----------------------------------------------------------------**/
+    public Usuarios findBydni (String dni) {
+        
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Usuarios> cq = cb.createQuery(Usuarios.class);
+        
+        Root e = cq.from(Usuarios.class);
+        
+        cq.where(cb.equal(e.get("dni"),dni));
+        
+        Query query = em.createQuery(cq);
+        query.setParameter("dni", dni);
+        
+        Usuarios Usu = (Usuarios)query.getSingleResult();
+       
+        return Usu;
+    }
+    
+        public Usuarios findByApellido (String apell) {
+        
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Usuarios> cq = cb.createQuery(Usuarios.class);
+        
+        Root e = cq.from(Usuarios.class);
+        
+        cq.where(cb.equal(e.get("Apellido"),apell));
+        
+        Query query = em.createQuery(cq);
+        query.setParameter("Apellido", apell);
+        Usuarios Usu = (Usuarios)query.getSingleResult();
+       
+        return Usu;
+    }
+       
 }
-   

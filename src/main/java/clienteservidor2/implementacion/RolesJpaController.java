@@ -23,7 +23,7 @@ import javax.persistence.criteria.CriteriaBuilder;
  */
 public class RolesJpaController implements DAO<List<Roles>> {
     
-        @PersistenceContext (unitName="ClienteServidor2")
+        @PersistenceContext (unitName="clienteServ-pu")
     private EntityManager em;
 
         //OVERRIDES---------------------------------------

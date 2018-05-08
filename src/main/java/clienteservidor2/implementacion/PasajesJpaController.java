@@ -22,7 +22,7 @@ import javax.persistence.criteria.CriteriaBuilder;
  */
 public class PasajesJpaController implements DAO<List<Pasajes>> {
     
-     @PersistenceContext (unitName="ClienteServidor2")
+     @PersistenceContext (unitName="clienteServ-pu")
      private EntityManager em;
 
 //OVERRIDES-------------------------------------------
