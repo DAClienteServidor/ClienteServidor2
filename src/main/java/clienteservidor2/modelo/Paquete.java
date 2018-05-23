@@ -30,12 +30,11 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "paquete")
-public class Paquete implements Serializable {
+public class Paquete implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
 //properties--------------------------
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)

@@ -23,7 +23,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "usuarios")
-public class Usuarios implements Serializable {
+public class Usuarios implements Serializable{
     
     	private static final long serialVersionUID = 1L;
    
@@ -66,10 +66,6 @@ public class Usuarios implements Serializable {
     @Size(max = 45)
     @Column(name = "correo")
     private String correo;
-    
-    @Size(max = 45)
-    @Column(name = "Usuarioscol")
-    private String usuarioscol;
     
     @ManyToMany(mappedBy = "usuariosList")
     private List<Roles> rolesList;
@@ -142,14 +138,5 @@ public class Usuarios implements Serializable {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-
-    public String getUsuarioscol() {
-        return usuarioscol;
-    }
-
-    public void setUsuarioscol(String usuarioscol) {
-        this.usuarioscol = usuarioscol;
-    }
-
-
+    
 }

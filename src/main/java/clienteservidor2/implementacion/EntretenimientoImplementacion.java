@@ -6,10 +6,10 @@
 package clienteservidor2.implementacion;
 
 import clienteservidor2.dao.DAO;
-import clienteservidor2.modelo.Componentes;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import clienteservidor2.modelo.Entretenimiento;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,58 +20,54 @@ import javax.persistence.criteria.CriteriaBuilder;
  *
  * @author maria
  */
-public class ComponentesJpaController implements DAO<List<Componentes>> {
+public class EntretenimientoImplementacion implements DAO<Entretenimiento> {
 
     
     @PersistenceContext (unitName="clienteServ-pu")
      private EntityManager em;
     
-//OVERRIDES---------------------------------------------------
+    //OVERRIDES---------------------------------------------------------
     
     @Override
-    public void create(Object obj) {
-        Componentes C = (Componentes) obj;
-        em.persist(C);   
+    public void create(Entretenimiento Ent) {
+        em.persist(Ent);   
     }
 
     @Override
-    public void update(Object obj) {
-        Componentes C = (Componentes) obj;
-        em.persist(C);   
-   }
+    public void update(Entretenimiento Ent) {
+        em.persist(Ent);  
+    }
 
     @Override
-    public void delete(Object obj) {
-        Componentes C = (Componentes) obj;
-        em.persist(C);   
-   }
+    public void delete(Entretenimiento Ent) {
+        em.persist(Ent); }
 
     @Override
-    public List<Componentes> findAll() {
+    public List<Entretenimiento> findAll() {
    CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Componentes> q = cb.createQuery(Componentes.class);
+		CriteriaQuery<Entretenimiento> q = cb.createQuery(Entretenimiento.class);
 		
-		Root<Componentes> root = q.from(Componentes.class);
+		Root<Entretenimiento> root = q.from(Entretenimiento.class);
 		q.select(root);
 		
-		TypedQuery<Componentes> query = em.createQuery(q);
+		TypedQuery<Entretenimiento> query = em.createQuery(q);
 		
                 return query.getResultList();     
     }
-
-//OTROS---------------------------------------------------
-    public Componentes findComponentes(Integer id) {
+  //OTROS-----------------------------------------------------------
+    
+        public Entretenimiento findEntretenimiento(Integer id) {
         try {
-            return em.find(Componentes.class, id);
+            return em.find(Entretenimiento.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getComponentesCount() {
+    public int getEntretenimientoCount() {
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Componentes> rt = cq.from(Componentes.class);
+            Root<Entretenimiento> rt = cq.from(Entretenimiento.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -79,9 +75,9 @@ public class ComponentesJpaController implements DAO<List<Componentes>> {
             em.close();
         }
     }
-        
 
+
+
+
+    
 }
-
-
-

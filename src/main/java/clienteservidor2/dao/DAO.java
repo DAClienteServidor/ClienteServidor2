@@ -7,6 +7,7 @@ package clienteservidor2.dao;
 
 import static java.nio.file.Files.list;
 import static java.util.Collections.list;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -20,12 +21,12 @@ import javax.ejb.Local;
 public interface DAO<T>{
     
     
-        void create(Object obj);
+        void create(T obj);
 	
-	void update(Object obj);
+	void update(T obj);
 	
-	void delete(Object obj);
+	void delete(T obj);
 	
-	T findAll();
+	   List<T> findAll();
 	
 }

@@ -20,7 +20,7 @@ import javax.persistence.criteria.CriteriaBuilder;
  *
  * @author maria
  */
-public class PasajesJpaController implements DAO<List<Pasajes>> {
+public class PasajesImplementacion implements DAO<Pasajes> {
     
      @PersistenceContext (unitName="clienteServ-pu")
      private EntityManager em;
@@ -29,20 +29,17 @@ public class PasajesJpaController implements DAO<List<Pasajes>> {
      
      
     @Override
-    public void create(Object obj) {
-    Pasajes P = (Pasajes) obj;
+    public void create(Pasajes P) {
     em.persist(P);
     }
 
     @Override
-    public void update(Object obj) {
-    Pasajes P = (Pasajes) obj;
+    public void update(Pasajes P) {
     em.persist(P);
     }
 
     @Override
-    public void delete(Object obj) {
-    Pasajes P = (Pasajes) obj;
+    public void delete(Pasajes P) {
     em.persist(P);
     }
 
