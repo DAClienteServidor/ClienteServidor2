@@ -23,7 +23,7 @@ public abstract class BaseEntity implements Serializable{
    
     // Properties -------------------------------------------------------------
 
-    @Id
+        @Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;

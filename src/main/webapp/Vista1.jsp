@@ -9,10 +9,10 @@
         <title>JSP Page</title>
     </head>
     
-    <%
-       clienteservidor2.implementacion.UsuariosJpaController usuario = new clienteservidor2.implementacion.UsuariosJpaController(); 
-       List<clienteservidor2.modelo.Usuarios> datos= new ArrayList();
-        %>
+    // <%
+       // clienteservidor2.implementacion.UsuariosJpaController usuario = new clienteservidor2.implementacion.UsuariosJpaController(); 
+       // List<clienteservidor2.modelo.Usuarios> datos= new ArrayList();
+       // %>
     
         
     <body>
@@ -45,10 +45,10 @@
                 <td>TELEFONO </td>
             </tr>
             
-            <%
-               datos = usuario.findAll();
-               for(Usuarios u: datos){
-               %>
+           // <%
+           //    datos = usuario.findAll();
+           //  for(Usuarios u: datos){
+            //   %>
                <tr>
                   <!-- <td>  <% u.getDni(); %> </td>
                    <td> <% u.getApellido();  %>  </td>
@@ -61,9 +61,9 @@
 
                </tr>
                
-               <%
-               }
-                %>
+              // <%
+              // }
+               // %>
             
             
         </table>
