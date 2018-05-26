@@ -20,7 +20,7 @@ import javax.persistence.criteria.CriteriaBuilder;
  *
  * @author maria
  */
-public class EstadiaJpaController implements DAO<List<Estadia>> {
+public class EstadiaImplementacion implements DAO<Estadia> {
 
     @PersistenceContext (unitName="clienteServ-pu")
      private EntityManager em;
@@ -29,20 +29,17 @@ public class EstadiaJpaController implements DAO<List<Estadia>> {
     
     
     @Override
-    public void create(Object obj) {
-    Estadia E = (Estadia) obj;
+    public void create(Estadia E) {
         em.persist(E); 
     }
 
     @Override
-    public void update(Object obj) {
-    Estadia E = (Estadia) obj;
+    public void update(Estadia E) {
         em.persist(E);    
     }
 
     @Override
-    public void delete(Object obj) {
-    Estadia E = (Estadia) obj;
+    public void delete(Estadia E) {
         em.persist(E);
     }
 

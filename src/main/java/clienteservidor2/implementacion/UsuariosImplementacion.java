@@ -23,7 +23,7 @@ import javax.persistence.Query;
  */
 
 @Stateless
-public class UsuariosJpaController implements DAO<List<Usuarios>> {
+public class UsuariosImplementacion implements DAO<Usuarios> {
 
     @PersistenceContext (unitName="clienteServ-pu")
     private EntityManager em;
@@ -31,20 +31,17 @@ public class UsuariosJpaController implements DAO<List<Usuarios>> {
     //OVERRIDES-----------------------------------------
     
     @Override
-    public void create(Object obj) {
-    Usuarios U= (Usuarios) obj;
+    public void create(Usuarios U) {
     em.persist(U);
     }
 
     @Override
-    public void update(Object obj) {
-    Usuarios U= (Usuarios) obj;
+    public void update(Usuarios U) {
     em.persist(U);
     }
 
     @Override
-    public void delete(Object obj) {
-    Usuarios U= (Usuarios) obj;
+    public void delete(Usuarios U) {
     em.persist(U);
     
     }
@@ -108,7 +105,7 @@ public class UsuariosJpaController implements DAO<List<Usuarios>> {
         
         Root e = cq.from(Usuarios.class);
         
-        cq.where(cb.equal(e.get("Apellido"),apell));
+        cq.where(cb.equal(e.get("apellido"),apell));
         
         Query query = em.createQuery(cq);
         query.setParameter("Apellido", apell);

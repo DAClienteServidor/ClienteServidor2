@@ -20,27 +20,24 @@ import javax.persistence.criteria.CriteriaBuilder;
  *
  * @author maria
  */
-public class PaqueteJpaController implements DAO<List<Paquete>> {
+public class PaqueteImplementacion implements DAO<Paquete> {
         
      @PersistenceContext (unitName="clienteServ-pu")
      private EntityManager em;
 
 //OVERRIDES---------------------------------------------
     @Override
-    public void create(Object obj) {
-        Paquete P = (Paquete) obj;
+    public void create(Paquete P) {
         em.persist(P);
     }
 
     @Override
-    public void update(Object obj) {
-        Paquete P = (Paquete) obj;
+    public void update(Paquete P) {
         em.persist(P);
     }
 
     @Override
-    public void delete(Object obj) {
-          Paquete P = (Paquete) obj;
+    public void delete(Paquete P) {
         em.persist(P);
     }
 

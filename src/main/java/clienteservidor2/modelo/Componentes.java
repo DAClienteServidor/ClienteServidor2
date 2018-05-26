@@ -8,10 +8,13 @@ package clienteservidor2.modelo;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.Generated;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
@@ -26,12 +29,13 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "componentes")
-public class Componentes implements Serializable {
+public class Componentes implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
  // Poropoeties------------------------
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(name = "codComponente")

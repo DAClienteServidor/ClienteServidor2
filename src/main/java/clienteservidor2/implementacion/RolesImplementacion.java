@@ -21,7 +21,7 @@ import javax.persistence.criteria.CriteriaBuilder;
  *
  * @author maria
  */
-public class RolesJpaController implements DAO<List<Roles>> {
+public class RolesImplementacion implements DAO<Roles> {
     
         @PersistenceContext (unitName="clienteServ-pu")
     private EntityManager em;
@@ -30,20 +30,17 @@ public class RolesJpaController implements DAO<List<Roles>> {
         
         
     @Override
-    public void create(Object obj) {
-    Roles R= (Roles) obj;
+    public void create(Roles R) {
     em.persist(R);
     }
 
     @Override
-    public void update(Object obj) {
-    Roles R= (Roles) obj;
+    public void update(Roles R) {
     em.persist(R);
     }
 
     @Override
-    public void delete(Object obj) {
-    Roles R= (Roles) obj;
+    public void delete(Roles R) {
     em.persist(R);
     }
 
