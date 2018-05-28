@@ -9,10 +9,10 @@
         <title>JSP Page</title>
     </head>
     
-    // <%
-       // clienteservidor2.implementacion.UsuariosJpaController usuario = new clienteservidor2.implementacion.UsuariosJpaController(); 
-       // List<clienteservidor2.modelo.Usuarios> datos= new ArrayList();
-       // %>
+    <%
+       clienteservidor2.implementacion.UsuariosJpaController usuario = new clienteservidor2.implementacion.UsuariosJpaController(); 
+        List<clienteservidor2.modelo.Usuarios> datos= new ArrayList();
+    %>
     
         
     <body>
