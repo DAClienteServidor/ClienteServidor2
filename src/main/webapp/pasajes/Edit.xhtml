@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPasajesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPasajesLabel_cod}" for="cod" />
+                    <h:inputText id="cod" value="#{pasajesController.selected.cod}" title="#{bundle.EditPasajesTitle_cod}" required="true" requiredMessage="#{bundle.EditPasajesRequiredMessage_cod}"/>
+                    <h:outputLabel value="#{bundle.EditPasajesLabel_tipo}" for="tipo" />
+                    <h:inputText id="tipo" value="#{pasajesController.selected.tipo}" title="#{bundle.EditPasajesTitle_tipo}" />
+                    <h:outputLabel value="#{bundle.EditPasajesLabel_hora}" for="hora" />
+                    <h:inputText id="hora" value="#{pasajesController.selected.hora}" title="#{bundle.EditPasajesTitle_hora}" >
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPasajesLabel_origen}" for="origen" />
+                    <h:inputText id="origen" value="#{pasajesController.selected.origen}" title="#{bundle.EditPasajesTitle_origen}" />
+                    <h:outputLabel value="#{bundle.EditPasajesLabel_destino}" for="destino" />
+                    <h:inputText id="destino" value="#{pasajesController.selected.destino}" title="#{bundle.EditPasajesTitle_destino}" />
+                    <h:outputLabel value="#{bundle.EditPasajesLabel_componentes}" for="componentes" />
+                    <h:selectOneMenu id="componentes" value="#{pasajesController.selected.componentes}" title="#{bundle.EditPasajesTitle_componentes}" required="true" requiredMessage="#{bundle.EditPasajesRequiredMessage_componentes}">
+                        <f:selectItems value="#{componentesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{pasajesController.update}" value="#{bundle.EditPasajesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPasajesViewLink}"/>
+                <br />
+                <h:commandLink action="#{pasajesController.prepareList}" value="#{bundle.EditPasajesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPasajesIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

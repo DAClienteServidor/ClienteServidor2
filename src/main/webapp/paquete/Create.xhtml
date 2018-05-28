@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePaqueteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePaqueteLabel_idPaquete}" for="idPaquete" />
+                    <h:inputText id="idPaquete" value="#{paqueteController.selected.idPaquete}" title="#{bundle.CreatePaqueteTitle_idPaquete}" required="true" requiredMessage="#{bundle.CreatePaqueteRequiredMessage_idPaquete}"/>
+                    <h:outputLabel value="#{bundle.CreatePaqueteLabel_fechaF}" for="fechaF" />
+                    <h:inputText id="fechaF" value="#{paqueteController.selected.fechaF}" title="#{bundle.CreatePaqueteTitle_fechaF}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePaqueteLabel_fechaI}" for="fechaI" />
+                    <h:inputText id="fechaI" value="#{paqueteController.selected.fechaI}" title="#{bundle.CreatePaqueteTitle_fechaI}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePaqueteLabel_costoTot}" for="costoTot" />
+                    <h:inputText id="costoTot" value="#{paqueteController.selected.costoTot}" title="#{bundle.CreatePaqueteTitle_costoTot}" />
+                    <h:outputLabel value="#{bundle.CreatePaqueteLabel_formaPago}" for="formaPago" />
+                    <h:inputText id="formaPago" value="#{paqueteController.selected.formaPago}" title="#{bundle.CreatePaqueteTitle_formaPago}" />
+                    <h:outputLabel value="#{bundle.CreatePaqueteLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{paqueteController.selected.estado}" title="#{bundle.CreatePaqueteTitle_estado}" />
+                    <h:outputLabel value="#{bundle.CreatePaqueteLabel_origen}" for="origen" />
+                    <h:inputText id="origen" value="#{paqueteController.selected.origen}" title="#{bundle.CreatePaqueteTitle_origen}" />
+                    <h:outputLabel value="#{bundle.CreatePaqueteLabel_permitido}" for="permitido" />
+                    <h:inputText id="permitido" value="#{paqueteController.selected.permitido}" title="#{bundle.CreatePaqueteTitle_permitido}" />
+                    <h:outputLabel value="#{bundle.CreatePaqueteLabel_canPersonas}" for="canPersonas" />
+                    <h:inputText id="canPersonas" value="#{paqueteController.selected.canPersonas}" title="#{bundle.CreatePaqueteTitle_canPersonas}" />
+                    <h:outputLabel value="#{bundle.CreatePaqueteLabel_usuariosdni}" for="usuariosdni" />
+                    <h:selectOneMenu id="usuariosdni" value="#{paqueteController.selected.usuariosdni}" title="#{bundle.CreatePaqueteTitle_usuariosdni}" required="true" requiredMessage="#{bundle.CreatePaqueteRequiredMessage_usuariosdni}">
+                        <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{paqueteController.create}" value="#{bundle.CreatePaqueteSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{paqueteController.prepareList}" value="#{bundle.CreatePaqueteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePaqueteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

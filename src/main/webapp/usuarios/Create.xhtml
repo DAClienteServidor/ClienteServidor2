@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUsuariosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_dni}" for="dni" />
+                    <h:inputText id="dni" value="#{usuariosController.selected.dni}" title="#{bundle.CreateUsuariosTitle_dni}" />
+                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_apellido}" for="apellido" />
+                    <h:inputText id="apellido" value="#{usuariosController.selected.apellido}" title="#{bundle.CreateUsuariosTitle_apellido}" />
+                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{usuariosController.selected.nombre}" title="#{bundle.CreateUsuariosTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{usuariosController.selected.usuario}" title="#{bundle.CreateUsuariosTitle_usuario}" />
+                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_contrasena}" for="contrasena" />
+                    <h:inputText id="contrasena" value="#{usuariosController.selected.contrasena}" title="#{bundle.CreateUsuariosTitle_contrasena}" />
+                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_direccion}" for="direccion" />
+                    <h:inputText id="direccion" value="#{usuariosController.selected.direccion}" title="#{bundle.CreateUsuariosTitle_direccion}" />
+                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_telefono}" for="telefono" />
+                    <h:inputText id="telefono" value="#{usuariosController.selected.telefono}" title="#{bundle.CreateUsuariosTitle_telefono}" />
+                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_correo}" for="correo" />
+                    <h:inputText id="correo" value="#{usuariosController.selected.correo}" title="#{bundle.CreateUsuariosTitle_correo}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{usuariosController.create}" value="#{bundle.CreateUsuariosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{usuariosController.prepareList}" value="#{bundle.CreateUsuariosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateUsuariosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

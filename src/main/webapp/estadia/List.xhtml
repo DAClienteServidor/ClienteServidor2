@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEstadiaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListEstadiaEmpty}" rendered="#{estadiaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{estadiaController.items.rowCount > 0}">
+                    <h:outputText value="#{estadiaController.pagination.pageFirstItem + 1}..#{estadiaController.pagination.pageLastItem + 1}/#{estadiaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{estadiaController.previous}" value="#{bundle.Previous} #{estadiaController.pagination.pageSize}" rendered="#{estadiaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{estadiaController.next}" value="#{bundle.Next} #{estadiaController.pagination.pageSize}" rendered="#{estadiaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{estadiaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstadiaTitle_cod}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cod}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstadiaTitle_ciudad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ciudad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstadiaTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstadiaTitle_direccion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.direccion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstadiaTitle_estrellas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estrellas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstadiaTitle_telefono}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefono}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstadiaTitle_componentes}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.componentes}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{estadiaController.prepareView}" value="#{bundle.ListEstadiaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{estadiaController.prepareEdit}" value="#{bundle.ListEstadiaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{estadiaController.destroy}" value="#{bundle.ListEstadiaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{estadiaController.prepareCreate}" value="#{bundle.ListEstadiaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListEstadiaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

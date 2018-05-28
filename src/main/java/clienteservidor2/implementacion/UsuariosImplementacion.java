@@ -21,45 +21,42 @@ import javax.persistence.Query;
  *
  * @author maria
  */
-
 @Stateless
 public class UsuariosImplementacion implements DAO<Usuarios> {
 
-    @PersistenceContext (unitName="clienteServ-pu")
+    @PersistenceContext(unitName = "clienteServ-pu")
     private EntityManager em;
-    
+
     //OVERRIDES-----------------------------------------
-    
     @Override
     public void create(Usuarios U) {
-    em.persist(U);
+        em.persist(U);
     }
 
     @Override
     public void update(Usuarios U) {
-    em.persist(U);
+        em.persist(U);
     }
 
     @Override
     public void delete(Usuarios U) {
-    em.persist(U);
-    
+        em.persist(U);
+
     }
 
-   
     @Override
     public List<Usuarios> findAll() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Usuarios> q = cb.createQuery(Usuarios.class);
-		
-		Root<Usuarios> root = q.from(Usuarios.class);
-		q.select(root);
-		
-		TypedQuery<Usuarios> query = em.createQuery(q);
-		
-		return query.getResultList();
+        CriteriaQuery<Usuarios> q = cb.createQuery(Usuarios.class);
+
+        Root<Usuarios> root = q.from(Usuarios.class);
+        q.select(root);
+
+        TypedQuery<Usuarios> query = em.createQuery(q);
+
+        return query.getResultList();
     }
-    
+
 // OTROS -------------------------------------------------------------
     public Usuarios findUsuario(Integer id) {
         try {
@@ -80,38 +77,51 @@ public class UsuariosImplementacion implements DAO<Usuarios> {
             em.close();
         }
     }
-    
-    public Usuarios findBydni (String dni) {
-        
+
+    public Usuarios findBydni(String dni) {
+
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Usuarios> cq = cb.createQuery(Usuarios.class);
-        
+
         Root e = cq.from(Usuarios.class);
-        
-        cq.where(cb.equal(e.get("dni"),dni));
-        
+
+        cq.where(cb.equal(e.get("dni"), dni));
+
         Query query = em.createQuery(cq);
         query.setParameter("dni", dni);
-        
-        Usuarios Usu = (Usuarios)query.getSingleResult();
-       
+
+        Usuarios Usu = (Usuarios) query.getSingleResult();
+
         return Usu;
     }
-    
-        public Usuarios findByApellido (String apell) {
-        
+
+    public Usuarios findByApellido(String apell) {
+
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Usuarios> cq = cb.createQuery(Usuarios.class);
-        
+
         Root e = cq.from(Usuarios.class);
-        
-        cq.where(cb.equal(e.get("apellido"),apell));
-        
+
+        cq.where(cb.equal(e.get("apellido"), apell));
+
         Query query = em.createQuery(cq);
         query.setParameter("Apellido", apell);
-        Usuarios Usu = (Usuarios)query.getSingleResult();
-       
+        Usuarios Usu = (Usuarios) query.getSingleResult();
+
         return Usu;
     }
-       
+
+    public Boolean loginControl(String usuario, String contrasena) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Usuarios> cq = cb.createQuery(Usuarios.class);
+
+        Root e = cq.from(Usuarios.class);
+
+        cq.where(cb.equal(e.get("usuario"), usuario));
+        cq.where(cb.equal(e.get("contrasena"), contrasena));
+        cq.select(e);
+
+        TypedQuery<Usuarios> query = em.createQuery(cq);
+        return !query.getResultList().isEmpty();
+    }
 }
