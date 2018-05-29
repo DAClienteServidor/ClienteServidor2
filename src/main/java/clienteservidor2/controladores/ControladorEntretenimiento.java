@@ -1,5 +1,6 @@
-package clienteservidor2.dao;
+package clienteservidor2.controladores;
 
+import clienteservidor2.dao.EntretenimientoDAO;
 import clienteservidor2.modelo.Entretenimiento;
 import clienteservidor2.dao.util.JsfUtil;
 import clienteservidor2.dao.util.PaginationHelper;
@@ -19,16 +20,16 @@ import javax.faces.model.SelectItem;
 
 @ManagedBean(name = "entretenimientoController")
 @SessionScoped
-public class EntretenimientoController implements Serializable {
+public class ControladorEntretenimiento implements Serializable {
 
     private Entretenimiento current;
     private DataModel items = null;
     @EJB
-    private clienteservidor2.dao.EntretenimientoFacade ejbFacade;
+    private clienteservidor2.dao.EntretenimientoDAO ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public EntretenimientoController() {
+    public ControladorEntretenimiento() {
     }
 
     public Entretenimiento getSelected() {
@@ -39,7 +40,7 @@ public class EntretenimientoController implements Serializable {
         return current;
     }
 
-    private EntretenimientoFacade getFacade() {
+    private EntretenimientoDAO getFacade() {
         return ejbFacade;
     }
 
@@ -195,7 +196,7 @@ public class EntretenimientoController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            EntretenimientoController controller = (EntretenimientoController) facesContext.getApplication().getELResolver().
+            ControladorEntretenimiento controller = (ControladorEntretenimiento) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "entretenimientoController");
             return controller.ejbFacade.find(getKey(value));
         }

@@ -72,19 +72,17 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{usuariosController.prepareView}" value="#{bundle.ListUsuariosViewLink}"/>
+                            <h:commandButton action="#{usuariosController.prepareView}" value="Ver"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{usuariosController.prepareEdit}" value="#{bundle.ListUsuariosEditLink}"/>
+                            <h:commandButton action="#{usuariosController.prepareEdit}" value="Modificar"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{usuariosController.destroy}" value="#{bundle.ListUsuariosDestroyLink}"/>
+                            <h:commandButton action="#{usuariosController.destroy}" value="Eliminar"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{usuariosController.prepareCreate}" value="#{bundle.ListUsuariosCreateLink}"/>
+                <h:commandButton action="#{usuariosController.prepareCreate}" value="Crear Nuevo Usuario"/>
                 <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListUsuariosIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>

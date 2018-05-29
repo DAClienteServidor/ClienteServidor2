@@ -4,8 +4,8 @@ root {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    color: #3a4f54;
-    background-color: #dfecf1;
+    color: white;
+    background-color: darkslategray;
     font-size: small;
 }
 
@@ -13,13 +13,28 @@ a {
     color: #e33b06;
 }
 
+#principal{
+    margin: auto;
+    margin-top: 50px;
+}
+
+#menu{
+    float: left;
+    margin-left: 100px;
+
+}
+
+#contenido{
+    float: left;
+    margin-left: 100px;
+}
+
 table {
     empty-cells: show;
 }
 
 form.jsfcrud_list_form th, td th {
-    font-size: x-small;
-    color: #4e6a71;
+    color: #003333;
     border-top-style: solid;
     border-bottom-style: solid;
     border-left-style: solid;
@@ -56,10 +71,10 @@ form.jsfcrud_list_form td, td td {
     border-bottom-width: 1px;
     border-left-width: 1px;
     border-right-width: 1px;
-    border-top-color: #b2d5d6;
-    border-bottom-color: #b2d5d6;
-    border-left-color: #b2d5d6;
-    border-right-color: #b2d5d6;
+    border-top-color: #009999;
+    border-bottom-color: #009999;
+    border-left-color: #009999;
+    border-right-color: #009999;
     vertical-align: baseline;
     padding-bottom: 0px;
 }

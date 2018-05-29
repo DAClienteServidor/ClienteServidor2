@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author usuario
  */
 @Stateless
-public class ComponentesFacade extends AbstractFacade<Componentes> {
+public class ComponentesDAO extends DAO<Componentes> {
 
     @PersistenceContext(unitName = "clienteServ-pu")
     private EntityManager em;
@@ -25,7 +25,7 @@ public class ComponentesFacade extends AbstractFacade<Componentes> {
         return em;
     }
 
-    public ComponentesFacade() {
+    public ComponentesDAO() {
         super(Componentes.class);
     }
     

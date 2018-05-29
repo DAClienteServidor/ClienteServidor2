@@ -42,11 +42,11 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{rolesController.prepareView}" value="#{bundle.ListRolesViewLink}"/>
+                            <h:commandButton action="#{rolesController.prepareView}" value="#{bundle.ListRolesViewLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{rolesController.prepareEdit}" value="#{bundle.ListRolesEditLink}"/>
+                            <h:commandButton action="#{rolesController.prepareEdit}" value="#{bundle.ListRolesEditLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{rolesController.destroy}" value="#{bundle.ListRolesDestroyLink}"/>
+                            <h:commandButton action="#{rolesController.destroy}" value="#{bundle.ListRolesDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
@@ -54,9 +54,8 @@
                 <h:commandLink action="#{rolesController.prepareCreate}" value="#{bundle.ListRolesCreateLink}"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ListRolesIndexLink}"/>
+                <h:link outcome="/index" value="Volver al Index"/>
             </h:form>
         </ui:define>
     </ui:composition>
-
 </html>

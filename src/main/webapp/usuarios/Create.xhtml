@@ -33,13 +33,12 @@
                     <h:inputText id="correo" value="#{usuariosController.selected.correo}" title="#{bundle.CreateUsuariosTitle_correo}" />
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{usuariosController.create}" value="#{bundle.CreateUsuariosSaveLink}" />
+                <h:commandButton action="#{usuariosController.create}" value="Crear Usuario" />
                 <br />
                 <br />
-                <h:commandLink action="#{usuariosController.prepareList}" value="#{bundle.CreateUsuariosShowAllLink}" immediate="true"/>
+                <h:commandButton action="#{usuariosController.prepareList}" value="Mostrar lista de Usuarios" immediate="true"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.CreateUsuariosIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>

@@ -33,18 +33,12 @@
                     <h:outputText value="#{usuariosController.selected.correo}" title="#{bundle.ViewUsuariosTitle_correo}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{usuariosController.destroyAndView}" value="#{bundle.ViewUsuariosDestroyLink}"/>
+                <h:commandButton action="#{usuariosController.destroyAndView}" value="Eliminar"/>
                 <br />
                 <br />
-                <h:link outcome="Edit" value="#{bundle.ViewUsuariosEditLink}"/>
-                <br />
-                <h:commandLink action="#{usuariosController.prepareCreate}" value="#{bundle.ViewUsuariosCreateLink}" />
-                <br />
-                <h:commandLink action="#{usuariosController.prepareList}" value="#{bundle.ViewUsuariosShowAllLink}"/>
+                <h:commandButton action="#{usuariosController.prepareList}" value="Volver Atras"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ViewUsuariosIndexLink}"/>
-
             </h:form>
         </ui:define>
     </ui:composition>

@@ -1,6 +1,7 @@
-package clienteservidor2.dao;
+package clienteservidor2.controladores;
 
-import clienteservidor2.modelo.Componentes;
+import clienteservidor2.dao.PasajesDAO;
+import clienteservidor2.modelo.Pasajes;
 import clienteservidor2.dao.util.JsfUtil;
 import clienteservidor2.dao.util.PaginationHelper;
 
@@ -17,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@ManagedBean(name = "componentesController")
+@ManagedBean(name = "pasajesController")
 @SessionScoped
-public class ComponentesController implements Serializable {
+public class ControladorPasajes implements Serializable {
 
-    private Componentes current;
+    private Pasajes current;
     private DataModel items = null;
     @EJB
-    private clienteservidor2.dao.ComponentesFacade ejbFacade;
+    private clienteservidor2.dao.PasajesDAO ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public ComponentesController() {
+    public ControladorPasajes() {
     }
 
-    public Componentes getSelected() {
+    public Pasajes getSelected() {
         if (current == null) {
-            current = new Componentes();
+            current = new Pasajes();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private ComponentesFacade getFacade() {
+    private PasajesDAO getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +68,13 @@ public class ComponentesController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Componentes) getItems().getRowData();
+        current = (Pasajes) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Componentes();
+        current = new Pasajes();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -81,7 +82,7 @@ public class ComponentesController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ComponentesCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PasajesCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -90,7 +91,7 @@ public class ComponentesController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Componentes) getItems().getRowData();
+        current = (Pasajes) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -98,7 +99,7 @@ public class ComponentesController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ComponentesUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PasajesUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -107,7 +108,7 @@ public class ComponentesController implements Serializable {
     }
 
     public String destroy() {
-        current = (Componentes) getItems().getRowData();
+        current = (Pasajes) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -131,7 +132,7 @@ public class ComponentesController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ComponentesDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PasajesDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -187,16 +188,16 @@ public class ComponentesController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    @FacesConverter(forClass = Componentes.class)
-    public static class ComponentesControllerConverter implements Converter {
+    @FacesConverter(forClass = Pasajes.class)
+    public static class PasajesControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ComponentesController controller = (ComponentesController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "componentesController");
+            ControladorPasajes controller = (ControladorPasajes) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "pasajesController");
             return controller.ejbFacade.find(getKey(value));
         }
 
@@ -217,11 +218,11 @@ public class ComponentesController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Componentes) {
-                Componentes o = (Componentes) object;
-                return getStringKey(o.getCodComponente());
+            if (object instanceof Pasajes) {
+                Pasajes o = (Pasajes) object;
+                return getStringKey(o.getCod());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Componentes.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Pasajes.class.getName());
             }
         }
 

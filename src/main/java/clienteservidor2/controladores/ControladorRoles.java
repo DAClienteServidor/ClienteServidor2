@@ -1,6 +1,7 @@
-package clienteservidor2.dao;
+package clienteservidor2.controladores;
 
-import clienteservidor2.modelo.Paquete;
+import clienteservidor2.dao.RolesDAO;
+import clienteservidor2.modelo.Roles;
 import clienteservidor2.dao.util.JsfUtil;
 import clienteservidor2.dao.util.PaginationHelper;
 
@@ -17,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@ManagedBean(name = "paqueteController")
+@ManagedBean(name = "rolesController")
 @SessionScoped
-public class PaqueteController implements Serializable {
+public class ControladorRoles implements Serializable {
 
-    private Paquete current;
+    private Roles current;
     private DataModel items = null;
     @EJB
-    private clienteservidor2.dao.PaqueteFacade ejbFacade;
+    private clienteservidor2.dao.RolesDAO ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public PaqueteController() {
+    public ControladorRoles() {
     }
 
-    public Paquete getSelected() {
+    public Roles getSelected() {
         if (current == null) {
-            current = new Paquete();
+            current = new Roles();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private PaqueteFacade getFacade() {
+    private RolesDAO getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +68,13 @@ public class PaqueteController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Paquete) getItems().getRowData();
+        current = (Roles) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Paquete();
+        current = new Roles();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -81,7 +82,7 @@ public class PaqueteController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PaqueteCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RolesCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -90,7 +91,7 @@ public class PaqueteController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Paquete) getItems().getRowData();
+        current = (Roles) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -98,7 +99,7 @@ public class PaqueteController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PaqueteUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RolesUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -107,7 +108,7 @@ public class PaqueteController implements Serializable {
     }
 
     public String destroy() {
-        current = (Paquete) getItems().getRowData();
+        current = (Roles) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -131,7 +132,7 @@ public class PaqueteController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PaqueteDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RolesDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -187,16 +188,16 @@ public class PaqueteController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    @FacesConverter(forClass = Paquete.class)
-    public static class PaqueteControllerConverter implements Converter {
+    @FacesConverter(forClass = Roles.class)
+    public static class RolesControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            PaqueteController controller = (PaqueteController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "paqueteController");
+            ControladorRoles controller = (ControladorRoles) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "rolesController");
             return controller.ejbFacade.find(getKey(value));
         }
 
@@ -217,11 +218,11 @@ public class PaqueteController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Paquete) {
-                Paquete o = (Paquete) object;
-                return getStringKey(o.getIdPaquete());
+            if (object instanceof Roles) {
+                Roles o = (Roles) object;
+                return getStringKey(o.getClave());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Paquete.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Roles.class.getName());
             }
         }
 

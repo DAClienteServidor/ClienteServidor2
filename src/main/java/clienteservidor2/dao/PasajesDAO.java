@@ -5,7 +5,7 @@
  */
 package clienteservidor2.dao;
 
-import clienteservidor2.modelo.Estadia;
+import clienteservidor2.modelo.Pasajes;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author usuario
  */
 @Stateless
-public class EstadiaFacade extends AbstractFacade<Estadia> {
+public class PasajesDAO extends DAO<Pasajes> {
 
     @PersistenceContext(unitName = "clienteServ-pu")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class EstadiaFacade extends AbstractFacade<Estadia> {
         return em;
     }
 
-    public EstadiaFacade() {
-        super(Estadia.class);
+    public PasajesDAO() {
+        super(Pasajes.class);
     }
     
 }

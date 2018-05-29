@@ -1,6 +1,7 @@
-package clienteservidor2.dao;
+package clienteservidor2.controladores;
 
-import clienteservidor2.modelo.Roles;
+import clienteservidor2.dao.PaqueteDAO;
+import clienteservidor2.modelo.Paquete;
 import clienteservidor2.dao.util.JsfUtil;
 import clienteservidor2.dao.util.PaginationHelper;
 
@@ -17,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@ManagedBean(name = "rolesController")
+@ManagedBean(name = "paqueteController")
 @SessionScoped
-public class RolesController implements Serializable {
+public class ControladorPaquete implements Serializable {
 
-    private Roles current;
+    private Paquete current;
     private DataModel items = null;
     @EJB
-    private clienteservidor2.dao.RolesFacade ejbFacade;
+    private clienteservidor2.dao.PaqueteDAO ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public RolesController() {
+    public ControladorPaquete() {
     }
 
-    public Roles getSelected() {
+    public Paquete getSelected() {
         if (current == null) {
-            current = new Roles();
+            current = new Paquete();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private RolesFacade getFacade() {
+    private PaqueteDAO getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +68,13 @@ public class RolesController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Roles) getItems().getRowData();
+        current = (Paquete) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Roles();
+        current = new Paquete();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -81,7 +82,7 @@ public class RolesController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RolesCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PaqueteCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -90,7 +91,7 @@ public class RolesController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Roles) getItems().getRowData();
+        current = (Paquete) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -98,7 +99,7 @@ public class RolesController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RolesUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PaqueteUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -107,7 +108,7 @@ public class RolesController implements Serializable {
     }
 
     public String destroy() {
-        current = (Roles) getItems().getRowData();
+        current = (Paquete) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -131,7 +132,7 @@ public class RolesController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RolesDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PaqueteDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -187,16 +188,16 @@ public class RolesController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    @FacesConverter(forClass = Roles.class)
-    public static class RolesControllerConverter implements Converter {
+    @FacesConverter(forClass = Paquete.class)
+    public static class PaqueteControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            RolesController controller = (RolesController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "rolesController");
+            ControladorPaquete controller = (ControladorPaquete) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "paqueteController");
             return controller.ejbFacade.find(getKey(value));
         }
 
@@ -217,11 +218,11 @@ public class RolesController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Roles) {
-                Roles o = (Roles) object;
-                return getStringKey(o.getClave());
+            if (object instanceof Paquete) {
+                Paquete o = (Paquete) object;
+                return getStringKey(o.getIdPaquete());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Roles.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Paquete.class.getName());
             }
         }
 

@@ -32,15 +32,12 @@
                     <h:outputLabel value="#{bundle.EditUsuariosLabel_correo}" for="correo" />
                     <h:inputText id="correo" value="#{usuariosController.selected.correo}" title="#{bundle.EditUsuariosTitle_correo}" />
                 </h:panelGrid>
-                <h:commandLink action="#{usuariosController.update}" value="#{bundle.EditUsuariosSaveLink}"/>
+                <h:commandButton action="#{usuariosController.update}" value="Guardar"/>
                 <br />
                 <br />
-                <h:link outcome="View" value="#{bundle.EditUsuariosViewLink}"/>
-                <br />
-                <h:commandLink action="#{usuariosController.prepareList}" value="#{bundle.EditUsuariosShowAllLink}" immediate="true"/>
+                <h:commandButton action="#{usuariosController.prepareList}" value="Volver atras" immediate="true"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.EditUsuariosIndexLink}" />
             </h:form>
         </ui:define>
     </ui:composition>

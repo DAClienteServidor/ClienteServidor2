@@ -88,11 +88,11 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{paqueteController.prepareView}" value="#{bundle.ListPaqueteViewLink}"/>
+                            <h:commandButton action="#{paqueteController.prepareView}" value="#{bundle.ListPaqueteViewLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{paqueteController.prepareEdit}" value="#{bundle.ListPaqueteEditLink}"/>
+                            <h:commandButton action="#{paqueteController.prepareEdit}" value="#{bundle.ListPaqueteEditLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{paqueteController.destroy}" value="#{bundle.ListPaqueteDestroyLink}"/>
+                            <h:commandButton action="#{paqueteController.destroy}" value="#{bundle.ListPaqueteDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>

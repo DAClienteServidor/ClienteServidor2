@@ -62,11 +62,11 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{componentesController.prepareView}" value="#{bundle.ListComponentesViewLink}"/>
+                            <h:commandButton action="#{componentesController.prepareView}" value="#{bundle.ListComponentesViewLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{componentesController.prepareEdit}" value="#{bundle.ListComponentesEditLink}"/>
+                            <h:commandButton action="#{componentesController.prepareEdit}" value="#{bundle.ListComponentesEditLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{componentesController.destroy}" value="#{bundle.ListComponentesDestroyLink}"/>
+                            <h:commandButton action="#{componentesController.destroy}" value="#{bundle.ListComponentesDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>

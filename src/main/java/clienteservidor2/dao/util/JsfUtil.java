@@ -8,7 +8,9 @@ import javax.faces.convert.Converter;
 import javax.faces.model.SelectItem;
 
 public class JsfUtil {
-
+    /* Invoca un numero arbitrario de secuencias de comandos.
+       Si cualquier cadena en la secuencia de comandos devuelve falso, se corta
+    */
     public static SelectItem[] getSelectItems(List<?> entities, boolean selectOne) {
         int size = selectOne ? entities.size() + 1 : entities.size();
         SelectItem[] items = new SelectItem[size];

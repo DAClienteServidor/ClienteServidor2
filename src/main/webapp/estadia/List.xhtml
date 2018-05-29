@@ -66,11 +66,11 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{estadiaController.prepareView}" value="#{bundle.ListEstadiaViewLink}"/>
+                            <h:commandButton action="#{estadiaController.prepareView}" value="#{bundle.ListEstadiaViewLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{estadiaController.prepareEdit}" value="#{bundle.ListEstadiaEditLink}"/>
+                            <h:commandButton action="#{estadiaController.prepareEdit}" value="#{bundle.ListEstadiaEditLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{estadiaController.destroy}" value="#{bundle.ListEstadiaDestroyLink}"/>
+                            <h:commandButton action="#{estadiaController.destroy}" value="#{bundle.ListEstadiaDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>

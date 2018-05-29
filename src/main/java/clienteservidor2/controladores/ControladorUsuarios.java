@@ -1,6 +1,7 @@
-package clienteservidor2.dao;
+package clienteservidor2.controladores;
 
-import clienteservidor2.modelo.Estadia;
+import clienteservidor2.dao.UsuariosDAO;
+import clienteservidor2.modelo.Usuarios;
 import clienteservidor2.dao.util.JsfUtil;
 import clienteservidor2.dao.util.PaginationHelper;
 
@@ -17,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@ManagedBean(name = "estadiaController")
+@ManagedBean(name = "usuariosController")
 @SessionScoped
-public class EstadiaController implements Serializable {
+public class ControladorUsuarios implements Serializable {
 
-    private Estadia current;
+    private Usuarios current;
     private DataModel items = null;
     @EJB
-    private clienteservidor2.dao.EstadiaFacade ejbFacade;
+    private clienteservidor2.dao.UsuariosDAO ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public EstadiaController() {
+    public ControladorUsuarios() {
     }
 
-    public Estadia getSelected() {
+    public Usuarios getSelected() {
         if (current == null) {
-            current = new Estadia();
+            current = new Usuarios();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private EstadiaFacade getFacade() {
+    private UsuariosDAO getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +68,13 @@ public class EstadiaController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Estadia) getItems().getRowData();
+        current = (Usuarios) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Estadia();
+        current = new Usuarios();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -81,7 +82,7 @@ public class EstadiaController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("EstadiaCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsuariosCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -90,7 +91,7 @@ public class EstadiaController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Estadia) getItems().getRowData();
+        current = (Usuarios) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -98,7 +99,7 @@ public class EstadiaController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("EstadiaUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsuariosUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -107,7 +108,7 @@ public class EstadiaController implements Serializable {
     }
 
     public String destroy() {
-        current = (Estadia) getItems().getRowData();
+        current = (Usuarios) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -131,7 +132,7 @@ public class EstadiaController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("EstadiaDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsuariosDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -187,26 +188,26 @@ public class EstadiaController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    @FacesConverter(forClass = Estadia.class)
-    public static class EstadiaControllerConverter implements Converter {
+    @FacesConverter(forClass = Usuarios.class)
+    public static class UsuariosControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            EstadiaController controller = (EstadiaController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "estadiaController");
+            ControladorUsuarios controller = (ControladorUsuarios) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "usuariosController");
             return controller.ejbFacade.find(getKey(value));
         }
 
-        java.lang.Integer getKey(String value) {
-            java.lang.Integer key;
-            key = Integer.valueOf(value);
+        java.lang.String getKey(String value) {
+            java.lang.String key;
+            key = value;
             return key;
         }
 
-        String getStringKey(java.lang.Integer value) {
+        String getStringKey(java.lang.String value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();
@@ -217,11 +218,11 @@ public class EstadiaController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Estadia) {
-                Estadia o = (Estadia) object;
-                return getStringKey(o.getCod());
+            if (object instanceof Usuarios) {
+                Usuarios o = (Usuarios) object;
+                return getStringKey(o.getDni());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Estadia.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Usuarios.class.getName());
             }
         }
 

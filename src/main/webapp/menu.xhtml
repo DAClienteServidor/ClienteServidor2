@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"     
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition>
+        <h:form>  
+            <p:growl id="messages" showDetail="false"/>
+            <p:menu>
+                <p:submenu label="CRUDS">
+                    <p:menuitem value="Gestion Usuarios" outcome="/usuarios/List"/>
+                    <p:menuitem value="Gestion Componentes" outcome="/componentes/List"/>
+                    <p:menuitem value="Gestion Entretenimiento" outcome="/entretenimiento/List"/>
+                    <p:menuitem value="Gestion Estadia" outcome="/estadia/List"/>
+                    <p:menuitem value="Gestion Paquetes" outcome="/paquete/List"/>
+                    <p:menuitem value="Gestion Pasajes" outcome="/pasajes/List"/>
+                    <p:menuitem value="Gestion Roles" outcome="/roles/List"/>
+                </p:submenu>
+            </p:menu>
+        </h:form>
+    </ui:composition>
+</html>
