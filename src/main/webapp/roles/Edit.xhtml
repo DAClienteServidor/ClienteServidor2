@@ -13,24 +13,26 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
+            <h1 id="usu">Editar Rol</h1>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditRolesLabel_clave}" for="clave" />
-                    <h:inputText id="clave" value="#{rolesController.selected.clave}" title="#{bundle.EditRolesTitle_clave}" required="true" requiredMessage="#{bundle.EditRolesRequiredMessage_clave}"/>
-                    <h:outputLabel value="#{bundle.EditRolesLabel_descripcion}" for="descripcion" />
-                    <h:inputText id="descripcion" value="#{rolesController.selected.descripcion}" title="#{bundle.EditRolesTitle_descripcion}" />
-                    <h:outputLabel value="#{bundle.EditRolesLabel_nombre}" for="nombre" />
-                    <h:inputText id="nombre" value="#{rolesController.selected.nombre}" title="#{bundle.EditRolesTitle_nombre}" />
+                    <h:outputLabel value="Clave" for="clave" />
+                    <h:inputText id="clave" value="#{rolesController.selected.clave}" title="Clave" required="true" requiredMessage="#{bundle.EditRolesRequiredMessage_clave}"/>
+                    <h:outputLabel value="Descripcion" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{rolesController.selected.descripcion}" title="Descripcion" />
+                    <h:outputLabel value="#Nombre" for="nombre" />
+                    <h:inputText id="nombre" value="#{rolesController.selected.nombre}" title="Nombre" />
                 </h:panelGrid>
-                <h:commandLink action="#{rolesController.update}" value="#{bundle.EditRolesSaveLink}"/>
+                <h:commandButton action="#{rolesController.update}" value="Guardar"/>
                 <br />
                 <br />
-                <h:link outcome="View" value="#{bundle.EditRolesViewLink}"/>
-                <br />
-                <h:commandLink action="#{rolesController.prepareList}" value="#{bundle.EditRolesShowAllLink}" immediate="true"/>
+                <h:commandButton action="View" value="Ver"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.EditRolesIndexLink}" />
+                <h:commandButton action="#{rolesController.prepareList}" value="Mostrar Roles" immediate="true"/>
+                <br />
+                <br />
+                <h:commandButton action="/index" value="Atras" />
             </h:form>
         </ui:define>
     </ui:composition>

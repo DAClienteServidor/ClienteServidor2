@@ -7,39 +7,41 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewUsuariosTitle}"></h:outputText>
+            <h:outputText value="Usuario"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
+            <h1 id="usu">Usuario</h1>
+            <h:form style="">
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_dni}"/>
-                    <h:outputText value="#{usuariosController.selected.dni}" title="#{bundle.ViewUsuariosTitle_dni}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_apellido}"/>
-                    <h:outputText value="#{usuariosController.selected.apellido}" title="#{bundle.ViewUsuariosTitle_apellido}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_nombre}"/>
-                    <h:outputText value="#{usuariosController.selected.nombre}" title="#{bundle.ViewUsuariosTitle_nombre}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_usuario}"/>
-                    <h:outputText value="#{usuariosController.selected.usuario}" title="#{bundle.ViewUsuariosTitle_usuario}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_contrasena}"/>
-                    <h:outputText value="#{usuariosController.selected.contrasena}" title="#{bundle.ViewUsuariosTitle_contrasena}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_direccion}"/>
-                    <h:outputText value="#{usuariosController.selected.direccion}" title="#{bundle.ViewUsuariosTitle_direccion}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_telefono}"/>
-                    <h:outputText value="#{usuariosController.selected.telefono}" title="#{bundle.ViewUsuariosTitle_telefono}"/>
-                    <h:outputText value="#{bundle.ViewUsuariosLabel_correo}"/>
-                    <h:outputText value="#{usuariosController.selected.correo}" title="#{bundle.ViewUsuariosTitle_correo}"/>
+                    <h:outputText value="DNI:" style="margin-right: 25px; border-bottom-style: solid "/>
+                    <h:outputText value="#{usuariosController.selected.dni}" title="DNI"/>
+                    <h:outputText value="Apellido:" style="margin-right: 25px; border-bottom-style: solid "/>
+                    <h:outputText value="#{usuariosController.selected.apellido}" title="Apellido" />
+                    <h:outputText value="Nombre:" style="margin-right: 25px; border-bottom-style: solid "/>     
+                    <h:outputText value="#{usuariosController.selected.nombre}" title="Nombre"/>
+                    <h:outputText value="Usuario:" style="margin-right: 25px; border-bottom-style: solid "/>
+                    <h:outputText value="#{usuariosController.selected.usuario}" title="Usuario" />
+                    <h:outputText value="Contraseña:" style="margin-right: 25px; border-bottom-style: solid "/>
+                    <h:outputText value="#{usuariosController.selected.contrasena}" title="Contraseña" />
+                    <h:outputText value="Direccion:" style="margin-right: 25px; border-bottom-style: solid "/>
+                    <h:outputText value="#{usuariosController.selected.direccion}" title="Direccion" />
+                    <h:outputText value="Telefono:" style="margin-right: 25px; border-bottom-style: solid "/>
+                    <h:outputText value="#{usuariosController.selected.telefono}" title="Telefono" />
+                    <h:outputText value="Correo:" style="margin-right: 25px; border-bottom-style: solid "/>
+                    <h:outputText value="#{usuariosController.selected.correo}" title="Correo" />
                 </h:panelGrid>
                 <br />
                 <h:commandButton action="#{usuariosController.destroyAndView}" value="Eliminar"/>
                 <br />
                 <br />
-                <h:commandButton action="#{usuariosController.prepareList}" value="Volver Atras"/>
+                <h:commandButton action="#{usuariosController.prepareList}" value="Atras"/>
                 <br />
                 <br />
             </h:form>
+               
         </ui:define>
     </ui:composition>
 

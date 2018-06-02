@@ -7,33 +7,34 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.CreateUsuariosTitle}"></h:outputText>
+            <h:outputText value="Crear un nuevo usuario"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
+            <h1 id="usu">Nuevo Usuario</h1>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_dni}" for="dni" />
-                    <h:inputText id="dni" value="#{usuariosController.selected.dni}" title="#{bundle.CreateUsuariosTitle_dni}" />
-                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_apellido}" for="apellido" />
-                    <h:inputText id="apellido" value="#{usuariosController.selected.apellido}" title="#{bundle.CreateUsuariosTitle_apellido}" />
-                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_nombre}" for="nombre" />
-                    <h:inputText id="nombre" value="#{usuariosController.selected.nombre}" title="#{bundle.CreateUsuariosTitle_nombre}" />
-                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_usuario}" for="usuario" />
-                    <h:inputText id="usuario" value="#{usuariosController.selected.usuario}" title="#{bundle.CreateUsuariosTitle_usuario}" />
-                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_contrasena}" for="contrasena" />
-                    <h:inputText id="contrasena" value="#{usuariosController.selected.contrasena}" title="#{bundle.CreateUsuariosTitle_contrasena}" />
-                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_direccion}" for="direccion" />
-                    <h:inputText id="direccion" value="#{usuariosController.selected.direccion}" title="#{bundle.CreateUsuariosTitle_direccion}" />
-                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_telefono}" for="telefono" />
-                    <h:inputText id="telefono" value="#{usuariosController.selected.telefono}" title="#{bundle.CreateUsuariosTitle_telefono}" />
-                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_correo}" for="correo" />
-                    <h:inputText id="correo" value="#{usuariosController.selected.correo}" title="#{bundle.CreateUsuariosTitle_correo}" />
+                    <h:outputLabel value="DNI" for="dni" />
+                    <h:inputText id="dni" value="#{usuariosController.selected.dni}" title="DNI" />
+                    <h:outputLabel value="APELLIDO" for="apellido" />
+                    <h:inputText id="apellido" value="#{usuariosController.selected.apellido}" title="Apellido" />
+                    <h:outputLabel value="NOMBRE" for="nombre" />
+                    <h:inputText id="nombre" value="#{usuariosController.selected.nombre}" title="Nombre" />
+                    <h:outputLabel value="USUARIO" for="usuario" />
+                    <h:inputText id="usuario" value="#{usuariosController.selected.usuario}" title="Usuario" />
+                    <h:outputLabel value="CONTRASEÑA" for="contrasena" />
+                    <h:inputText id="contrasena" value="#{usuariosController.selected.contrasena}" title="Contraseña" />
+                    <h:outputLabel value="DIRECCION" for="direccion" />
+                    <h:inputText id="direccion" value="#{usuariosController.selected.direccion}" title="Direccion" />
+                    <h:outputLabel value="TELEFONO" for="telefono" />
+                    <h:inputText id="telefono" value="#{usuariosController.selected.telefono}" title="Telefono" />
+                    <h:outputLabel value="CORREO" for="correo" />
+                    <h:inputText id="correo" value="#{usuariosController.selected.correo}" title="Correo" />
                 </h:panelGrid>
                 <br />
-                <h:commandButton action="#{usuariosController.create}" value="Crear Usuario" />
+                <h:commandButton action="#{usuariosController.create}" value="Crear Usuario"/>
                 <br />
                 <br />
                 <h:commandButton action="#{usuariosController.prepareList}" value="Mostrar lista de Usuarios" immediate="true"/>

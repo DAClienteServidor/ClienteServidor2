@@ -82,10 +82,10 @@ public class ControladorRoles implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RolesCreated"));
+            JsfUtil.addSuccessMessage("Rol creado exitosamente");
             return prepareCreate();
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e,"Error de persistencia");
             return null;
         }
     }
@@ -99,10 +99,10 @@ public class ControladorRoles implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RolesUpdated"));
+            JsfUtil.addSuccessMessage("Editado exitosamente");
             return "View";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, "Error de persistencia");
             return null;
         }
     }

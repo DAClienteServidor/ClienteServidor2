@@ -3,21 +3,23 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core" 
       xmlns:h="http://java.sun.com/jsf/html"     
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"> 
     <ui:composition>
+       
+        
         <h:form>  
             <p:growl id="messages" showDetail="false"/>
             <p:menu>
-                <p:submenu label="CRUDS">
-                    <p:menuitem value="Gestion Usuarios" outcome="/usuarios/List"/>
-                    <p:menuitem value="Gestion Componentes" outcome="/componentes/List"/>
-                    <p:menuitem value="Gestion Entretenimiento" outcome="/entretenimiento/List"/>
-                    <p:menuitem value="Gestion Estadia" outcome="/estadia/List"/>
-                    <p:menuitem value="Gestion Paquetes" outcome="/paquete/List"/>
-                    <p:menuitem value="Gestion Pasajes" outcome="/pasajes/List"/>
-                    <p:menuitem value="Gestion Roles" outcome="/roles/List"/>
+                <p:submenu label="MENU" >
+                    <p:menuitem value="Gestion Usuarios" outcome="/usuarios/List"  style="border-radius: 4px ;  background-color: #90b4bd; border-bottom-color: #009999"/>
+                    <p:menuitem value="Gestion Componentes" outcome="/componentes/List"  style="border-radius: 4px ;  background-color: #90b4bd; border-bottom-color: #009999"/>
+                    <p:menuitem value="Gestion Entretenimiento" outcome="/entretenimiento/List" style="border-radius: 4px ;  background-color: #90b4bd; border-bottom-color: #009999"/>
+                    <p:menuitem value="Gestion Estadia" outcome="/estadia/List"  style="border-radius: 4px ;  background-color: #90b4bd; border-bottom-color: #009999"/>
+                    <p:menuitem value="Gestion Paquetes" outcome="/paquete/List"  style="border-radius: 4px ;  background-color: #90b4bd; border-bottom-color: #009999"/>
+                    <p:menuitem value="Gestion Pasajes" outcome="/pasajes/List"  style="border-radius: 4px ;  background-color: #90b4bd; border-bottom-color: #009999"/>
+                    <p:menuitem value="Gestion Roles" outcome="/roles/List"  style="border-radius: 4px ;  background-color: #90b4bd; border-bottom-color: #009999"/>
                 </p:submenu>
             </p:menu>
-        </h:form>
+       </h:form>  
     </ui:composition>
 </html>

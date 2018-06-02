@@ -7,29 +7,33 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.CreateRolesTitle}"></h:outputText>
+            <h:outputText value="NuevoRol"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
+            <h1 id="usu">Nuevo Rol</h1>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateRolesLabel_clave}" for="clave" />
-                    <h:inputText id="clave" value="#{rolesController.selected.clave}" title="#{bundle.CreateRolesTitle_clave}" required="true" requiredMessage="#{bundle.CreateRolesRequiredMessage_clave}"/>
-                    <h:outputLabel value="#{bundle.CreateRolesLabel_descripcion}" for="descripcion" />
-                    <h:inputText id="descripcion" value="#{rolesController.selected.descripcion}" title="#{bundle.CreateRolesTitle_descripcion}" />
-                    <h:outputLabel value="#{bundle.CreateRolesLabel_nombre}" for="nombre" />
-                    <h:inputText id="nombre" value="#{rolesController.selected.nombre}" title="#{bundle.CreateRolesTitle_nombre}" />
+                    <h:outputLabel value="Clave" for="clave" />
+                    <h:inputText id="clave" value="#{rolesController.selected.clave}" title="Clave" required="true" requiredMessage="Clave"/>
+                    <h:outputLabel value="Descripcion" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{rolesController.selected.descripcion}" title="Descripcion" />
+                    <h:outputLabel value="Nombre" for="nombre" />
+                    <h:inputText id="nombre" value="#{rolesController.selected.nombre}" title="Nombre" />
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{rolesController.create}" value="#{bundle.CreateRolesSaveLink}" />
+                
+                    <h:commandButton action="#{rolesController.create}" value="Crear Rol" />
+                
                 <br />
                 <br />
-                <h:commandLink action="#{rolesController.prepareList}" value="#{bundle.CreateRolesShowAllLink}" immediate="true"/>
+                
+                    <h:commandButton action="#{rolesController.prepareList}" value="Mostrar Roles" immediate="true"/>
+                
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.CreateRolesIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>
