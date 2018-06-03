@@ -48,7 +48,8 @@ public class loginControl implements Serializable{
         try{
             us = ejbUsuario.iniciarSesion(usuario);
             if (us!=null) {
-                redireccion = "principal";
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us); //Crea una sesion
+                redireccion = "principal?faces-redirect=true";
             }else{
                 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_WARN,"Aviso","Usuario o clave erronea"));
                   }    

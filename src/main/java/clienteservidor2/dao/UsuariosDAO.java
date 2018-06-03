@@ -13,7 +13,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 
 /**
@@ -43,10 +42,8 @@ public class UsuariosDAO extends DAO<Usuarios> {
 
             Root<Usuarios> e = cq.from(Usuarios.class);
             
-            ParameterExpression<String> usu = cb.parameter(String.class, "usu");
-            ParameterExpression<String> pas = cb.parameter(String.class, "pas");
-            cq.where(cb.equal(e.get("usuario"), us.getUsuario()));
-            cq.where(cb.equal(e.get("contrasena"), us.getContrasena()));
+            
+            cq.where(cb.and((cb.equal(e.get("usuario"), us.getUsuario())), (cb.equal(e.get("contrasena"), us.getContrasena()))));
 
             Query query = em.createQuery(cq);
             
