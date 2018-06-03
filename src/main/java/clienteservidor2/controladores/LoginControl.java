@@ -13,17 +13,15 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 
 /**
- *
- * @author usuario
+ * Controla el login del usuario y el cerrar sesion 
+ * @author Nico
  */
 @ManagedBean(name = "loginControl")
 @SessionScoped
-public class loginControl implements Serializable{
+public class LoginControl implements Serializable{
     
     @EJB
     private UsuariosDAO ejbUsuario;
@@ -49,7 +47,7 @@ public class loginControl implements Serializable{
             us = ejbUsuario.iniciarSesion(usuario);
             if (us!=null) {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us); //Crea una sesion
-                redireccion = "principal?faces-redirect=true";
+                redireccion = "index?faces-redirect=true";
             }else{
                 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_WARN,"Aviso","Usuario o clave erronea"));
                   }    
@@ -57,5 +55,10 @@ public class loginControl implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_FATAL,"Aviso","Error logueo"));
         }
         return redireccion;
+    }
+    
+    public String cerrarSesion(){
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "index?faces-redirect=true";
     }
 }

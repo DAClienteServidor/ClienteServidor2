@@ -11,9 +11,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+/**
+ * Para que nadie que no se haya logueado pueda acceder
+ * @author Nico
+ */
 @ManagedBean(name = "plantillaController")
 @SessionScoped
-public class plantillaController implements Serializable{
+public class PlantillaController implements Serializable{
+    
     public void verificarSesion(){
         try {
             FacesContext context = FacesContext.getCurrentInstance();
@@ -21,6 +26,7 @@ public class plantillaController implements Serializable{
             if (us==null) {
                 context.getExternalContext().redirect("index.xhtml");
             }
+            
         } catch (Exception e) {
         }
     }
