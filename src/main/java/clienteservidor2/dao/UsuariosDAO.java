@@ -6,16 +6,22 @@
 package clienteservidor2.dao;
 
 import clienteservidor2.modelo.Usuarios;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Root;
 
 /**
  *
  * @author usuario
  */
 @Stateless
-public class UsuariosDAO extends DAO<Usuarios>{
+public class UsuariosDAO extends DAO<Usuarios> {
 
     @PersistenceContext(unitName = "clienteServ-pu")
     private EntityManager em;
@@ -28,5 +34,30 @@ public class UsuariosDAO extends DAO<Usuarios>{
     public UsuariosDAO() {
         super(Usuarios.class);  //Llama a la superclase AbstractFacade y le pasa la entidad Usuarios
     }
-    
+
+    public Usuarios iniciarSesion(Usuarios us) throws Exception {
+        Usuarios usuario = null;
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Usuarios> cq = cb.createQuery(Usuarios.class);
+
+            Root<Usuarios> e = cq.from(Usuarios.class);
+            
+            ParameterExpression<String> usu = cb.parameter(String.class, "usu");
+            ParameterExpression<String> pas = cb.parameter(String.class, "pas");
+            cq.where(cb.equal(e.get("usuario"), us.getUsuario()));
+            cq.where(cb.equal(e.get("contrasena"), us.getContrasena()));
+
+            Query query = em.createQuery(cq);
+            
+            List<Usuarios> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                usuario = lista.get(0);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return usuario;
+    }
+
 }
